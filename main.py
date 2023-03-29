@@ -23,7 +23,7 @@ def generate_random_stations() -> List[Station]:
 
 
 def generate_random_observation_area() -> StationObservationArea:
-    # Suppose the final image has shape 400 x 400 and station cover
+    # Suppose the final image has shape 400 x 400
     # Suppose the station covers the area of a rectangle with a minimum side length of 20 and a maximum of 100
     x_min = random.randint(0, 300)
     y_min = random.randint(0, 300)
