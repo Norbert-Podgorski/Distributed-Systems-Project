@@ -15,19 +15,10 @@ class StationObservationArea:
 
 @ray.remote
 class Station(object):
-    def __init__(self):
+    def __init__(self, idx: int, observation_area: StationObservationArea):
+        self.idx: int = idx
+        self.observation_area: StationObservationArea = observation_area
         self.activity_detected: Dict[str, int] = {}
-        self.observation_area: StationObservationArea = self.generate_random_observation_area()
-
-    @staticmethod
-    def generate_random_observation_area() -> StationObservationArea:
-        # Suppose the final image has shape 400 x 400 and station cover
-        # Suppose the station covers the area of a rectangle with a minimum side length of 20 and a maximum of 100
-        x_min = random.randint(0, 300)
-        y_min = random.randint(0, 300)
-        x_max = random.randint(x_min + 20, x_min + 100)
-        y_max = random.randint(y_min + 20, y_min + 100)
-        return StationObservationArea(x_min, x_max, y_min, y_max)
 
     def simulate_new_activity(self) -> None:
         activity_power = random.randint(1, 10)
