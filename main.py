@@ -54,11 +54,8 @@ def start_simulation(stations: List[Station]) -> None:
         i = 0
         for station in stations:
             time.sleep(1)
-            new_activity = ray.get(station.get_and_clear_activity.remote())
-            if new_activity:
-                print("Station: ", i, " new activity:", new_activity)
-            else:
-                print("Station: ", i, " no new activity")
+            print("Station: ", i, " new activity: ")
+            station.read_report.remote()
             i += 1
 
 
