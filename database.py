@@ -23,17 +23,7 @@ class Database:
                     y_max INT NOT NULL
                     )
         '''
-
         self.engine.execute(query)
-        # class Stations(self.Base):
-        #     __tablename__ = 'stations'
-        #     station_idx = Column(Integer, primary_key=True)
-        #     x_min = Column(Integer)
-        #     x_max = Column(Integer)
-        #     y_min = Column(Integer)
-        #     y_max = Column(Integer)
-        #
-        # self.Base.metadata.create_all(self.engine)
 
     def delete_table(self, station_idx: int):
         self.engine.execute(f'DROP TABLE station_number_{station_idx}')
@@ -47,23 +37,9 @@ class Database:
                     power INT NOT NULL
                     )
         '''
-
         self.engine.execute(query)
 
-        # station_idx_class = station_idx
-        #
-        # class StationNumber(self.Base):
-        #     __tablename__ = f'station_number_{station_idx_class}'
-        #     observation_idx = Column(Integer, primary_key=True)
-        #     station_idx = Column(Integer, ForeignKey('stations.station_idx'))
-        #     x = Column(Integer)
-        #     y = Column(Integer)
-        #     power = Column(Integer)
-        #
-        # self.Base.metadata.create_all(self.engine)
-
         query = f'INSERT INTO stations VALUES ({station_idx}, {x_min}, {x_max}, {y_min}, {y_max})'
-
         self.engine.execute(query)
 
     def delete_station(self, station_idx: int):
