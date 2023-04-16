@@ -49,12 +49,13 @@ class Database:
     def add_observation(self, station_idx: int, x: int, y: int, power: int):
         observation_idx = 1
         if self.engine.execute(
-                'SELECT observation_idx FROM station_number_1 ORDER BY observation_idx DESC').fetchone() is not None:
+                f'''SELECT observation_idx FROM station_number_{station_idx} 
+                    ORDER BY observation_idx DESC''').fetchone() is not None:
             observation_idx = self.engine.execute(
-                'SELECT observation_idx FROM station_number_1 ORDER BY observation_idx DESC').fetchone()[0] + 1
+                f'''SELECT observation_idx FROM station_number_{station_idx} 
+                    ORDER BY observation_idx DESC''').fetchone()[0] + 1
 
-        query = f'''INSERT INTO station_number_{station_idx}
-                VALUES ({observation_idx}, {station_idx}, {x}, {y}, {power})'''
+        query = f'INSERT INTO station_number_{station_idx} VALUES ({observation_idx}, {station_idx}, {x}, {y}, {power})'
 
         self.engine.execute(query)
 
