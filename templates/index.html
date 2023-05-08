@@ -1,0 +1,44 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Searching for extraterrestrial intelligence </title>
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+        <script src="https://kit.fontawesome.com/c80089f155.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="main">
+            <nav>
+                <h2 class="logo">AGH Extraterrestrial Intelligence</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about_project.html">About Project</a></li>
+                    <li><a href="#">Sky Pictures</a></li>
+                    <li><a href="#">Searching Stations</a></li>
+                </ul>
+                <button type="button">Sign in</button>
+            </nav>
+
+            <p class="inputs">Run Main Function</p>
+
+            <form>
+                <button id="submit">RUN</button>
+            </form>
+            <script>
+                function sendRequest() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:5001/run_main", true);
+                xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                }
+                };
+                xhr.send();
+                }
+
+                var button = document.getElementById("submit");
+                button.addEventListener("click", sendRequest);
+            </script>
+        </div>
+    </body>
+</html>
