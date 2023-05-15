@@ -28,14 +28,30 @@
                 <button id="heatmap">RUN</button>
             </form>
 
-            <p class="inputs">Show Heatmap</p>
+            <div class="image"> <img id="image" src="{{ url_for('static', filename='heatmap_pic.png') }}" alt="image"/> </div>
 
-            <form>
-                <button id="heatmap_pic">Heatmap</button>
-            </form>
+            <script>
+<!--                function show(){-->
+<!--                document.getElementById('image')-->
+<!--                .style.display = "block";-->
+<!--                document.getElementById('heatmap')-->
+<!--                .style.display = "none";-->
+<!--                }-->
 
-            <p> <img src="{{ url_for('static', filename='heatmap_pic.png') }}"> </p>
+                function sendRequest() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:5001/run_heatmap", true);
+                xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                }
+                };
+                xhr.send();
+                }
 
+                var button = document.getElementById("heatmap");
+                button.addEventListener("click", sendRequest);
+            </script>
 
             <script>
                 function sendRequest() {
@@ -52,21 +68,7 @@
                 var button = document.getElementById("submit");
                 button.addEventListener("click", sendRequest);
             </script>
-            <script>
-                function sendRequest() {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "http://localhost:5001/run_heatmap", true);
-                xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log(xhr.responseText);
-                }
-                };
-                xhr.send();
-                }
 
-                var button = document.getElementById("heatmap");
-                button.addEventListener("click", sendRequest);
-            </script>
         </div>
     </body>
 </html>
