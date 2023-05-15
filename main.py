@@ -4,21 +4,24 @@ from typing import List
 
 import ray
 
+from database import Database
 from station import Station, StationObservationArea
 
 
 def main() -> None:
+    database_conn = Database.remote()
     # For testing purposes only or if we fail to implement load_stations_added_from_website()
-    stations = generate_random_stations()
+    stations = generate_random_stations(database_conn)
 
     # stations = load_stations_added_from_website()
     start_simulation(stations)
 
 
-def generate_random_stations() -> List[Station]:
+def generate_random_stations(database_conn) -> List[Station]:
     # param
     stations_number = 4
-    stations = [Station.remote(idx=i, observation_area=generate_random_observation_area()) for i in range(stations_number)]
+    stations = [Station.remote(idx=i, observation_area=generate_random_observation_area(), database=database_conn)
+                for i in range(stations_number)]
     return stations
 
 
