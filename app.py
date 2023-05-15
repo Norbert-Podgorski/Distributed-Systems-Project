@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from main import main
+from heatmap import generate_heatmap
 
 app = Flask(__name__)
 
@@ -13,7 +14,11 @@ def home():
 @app.route('/run_main')
 def run_main():
     main()
-    print("It's working")
+
+
+@app.route('/run_heatmap')
+def run_heatmap():
+    generate_heatmap()
 
 
 if __name__ == '__main__':

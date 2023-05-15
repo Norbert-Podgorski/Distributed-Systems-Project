@@ -18,8 +18,8 @@ def generate_heatmap():
             df_observations = pd.concat([df_observations, pd.DataFrame(engine.execute(query).fetchall())])
 
     sns.scatterplot(data=df_observations, x='x', y='y', hue='station_idx', size='power')
+    plt.savefig('./static/heatmap_pic.png')
     plt.grid()
-    plt.show()
 
 
 if __name__ == '__main__':

@@ -13,10 +13,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about_project.html">About Project</a></li>
-                    <li><a href="#">Sky Pictures</a></li>
-                    <li><a href="#">Searching Stations</a></li>
                 </ul>
-                <button type="button">Sign in</button>
             </nav>
 
             <p class="inputs">Run Main Function</p>
@@ -24,6 +21,22 @@
             <form>
                 <button id="submit">RUN</button>
             </form>
+
+            <p class="inputs">Run Heatmap Function</p>
+
+            <form>
+                <button id="heatmap">RUN</button>
+            </form>
+
+            <p class="inputs">Show Heatmap</p>
+
+            <form>
+                <button id="heatmap_pic">Heatmap</button>
+            </form>
+
+            <p> <img src="{{ url_for('static', filename='heatmap_pic.png') }}"> </p>
+
+
             <script>
                 function sendRequest() {
                 var xhr = new XMLHttpRequest();
@@ -37,6 +50,21 @@
                 }
 
                 var button = document.getElementById("submit");
+                button.addEventListener("click", sendRequest);
+            </script>
+            <script>
+                function sendRequest() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:5001/run_heatmap", true);
+                xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                }
+                };
+                xhr.send();
+                }
+
+                var button = document.getElementById("heatmap");
                 button.addEventListener("click", sendRequest);
             </script>
         </div>
