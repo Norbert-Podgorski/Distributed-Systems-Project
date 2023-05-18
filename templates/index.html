@@ -24,20 +24,23 @@
 
             <p class="inputs">Run Heatmap Function</p>
 
-            <form>
+            <div class="heatmap">
                 <button id="heatmap">RUN</button>
-            </form>
+            </div>
 
-            <div class="image"> <img id="image" src="{{ url_for('static', filename='heatmap_pic.png') }}" alt="image"/> </div>
+            <div class="heatmap_pic">
+                <img id="heatmap_pic" src="{{ url_for('static', filename='heatmap_pic.png') }}" style="display: none;"/>
+            </div>
 
             <script>
-<!--                function show(){-->
-<!--                document.getElementById('image')-->
-<!--                .style.display = "block";-->
-<!--                document.getElementById('heatmap')-->
-<!--                .style.display = "none";-->
-<!--                }-->
+                const showImageButton = document.getElementById("heatmap");
+                const myImage = document.getElementById("heatmap_pic");
+                showImageButton.addEventListener("click", () => {
+                myImage.style.display = "block";
+                });
+             </script>
 
+            <script>
                 function sendRequest() {
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", "http://localhost:5001/run_heatmap", true);

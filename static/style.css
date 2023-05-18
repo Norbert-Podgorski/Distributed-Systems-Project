@@ -150,3 +150,15 @@ input:valid~label{
   display: none;
 }
 
+.heatmap{
+  padding-left: 5%;
+}
+
+.heatmap_pic{
+  position:absolute;
+  width:100px;
+  height:100px;
+  top:20%;
+  right:65%;
+}
+
