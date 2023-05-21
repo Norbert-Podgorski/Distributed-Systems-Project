@@ -28,6 +28,7 @@ def generate_heatmap():
     plt.grid()
     plt.tight_layout()
     plt.savefig('./static/heatmap_pic.png')
+    plt.grid()
 
 
 
