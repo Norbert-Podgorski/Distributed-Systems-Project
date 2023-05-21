@@ -29,16 +29,22 @@
             </div>
 
             <div class="heatmap_pic">
-                <img id="heatmap_pic" src="{{ url_for('static', filename='heatmap_pic.png') }}" style="display: none;"/>
+                <img id="heatmap_pic" src="{{ url_for('static', filename='heatmap_pic.png') }}" />
             </div>
 
             <script>
-                const showImageButton = document.getElementById("heatmap");
-                const myImage = document.getElementById("heatmap_pic");
-                showImageButton.addEventListener("click", () => {
-                myImage.style.display = "block";
-                });
-             </script>
+                setTimeout("location.reload(true);", 5000);
+            </script>
+
+<!--            style="display: none;"-->
+
+<!--            <script>-->
+<!--                const showImageButton = document.getElementById("heatmap");-->
+<!--                const myImage = document.getElementById("heatmap_first_pic");-->
+<!--                showImageButton.addEventListener("click", () => {-->
+<!--                myImage.style.display = "none";-->
+<!--                });-->
+<!--             </script>-->
 
             <script>
                 function sendRequest() {
