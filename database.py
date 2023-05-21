@@ -12,6 +12,7 @@ class Database:
         self.engine = create_engine(db_string)
         self.Base = declarative_base()
 
+        self.clear_database()
         self.create_stations_table()
 
     def create_stations_table(self):
@@ -25,8 +26,10 @@ class Database:
         '''
         self.engine.execute(query)
 
-    def delete_table(self, station_idx: int):
-        self.engine.execute(f'DROP TABLE station_number_{station_idx}')
+    def clear_database(self):
+        for station_idx in range(self.engine.execute('SELECT MAX(station_idx) FROM stations').fetchall()[0][0] + 1):
+            self.engine.execute(f'DROP TABLE station_number_{station_idx}')
+        self.engine.execute(f'DROP TABLE stations')
 
     def add_station(self, station_idx: int, x_min: int, x_max: int, y_min: int, y_max: int):
         query = f'''CREATE TABLE station_number_{station_idx} (
