@@ -16,15 +16,15 @@ def about_project():
     return render_template("about_project.html")
 
 
-@app.route('/run_main')
+@app.route('/run_main', methods=['GET', 'POST'])
 def run_main():
     main()
 
 
-@app.route('/run_heatmap')
+@app.route('/run_heatmap', methods=['GET', 'POST'])
 def run_heatmap():
     generate_heatmap()
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True)

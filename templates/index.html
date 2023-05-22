@@ -26,7 +26,7 @@
             <p class="inputs">Show skymap</p>
 
             <div class="heatmap">
-                <button id="heatmap" value="Reload Page" onClick="window.location.reload(true)">Generate Heatmap</button>
+                <button id="heatmap_" value="Reload Page" onClick="window.location.reload(true)">Generate Heatmap</button>
             </div>
 
             <div class="heatmap_pic">
@@ -36,7 +36,7 @@
             <script>
                 function sendRequest() {
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "http://localhost:5001/run_heatmap", true);
+                xhr.open("GET", "http://localhost:5000/run_heatmap", true);
                 xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log(xhr.responseText);
@@ -45,14 +45,14 @@
                 xhr.send();
                 }
 
-                var button = document.getElementById("heatmap");
+                var button = document.getElementById("heatmap_");
                 button.addEventListener("click", sendRequest);
             </script>
 
             <script>
                 function sendRequest() {
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "http://localhost:5001/run_main", true);
+                xhr.open("GET", "http://localhost:5000/run_main", true);
                 xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log(xhr.responseText);
