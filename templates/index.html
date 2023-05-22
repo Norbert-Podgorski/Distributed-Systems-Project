@@ -11,40 +11,27 @@
             <nav>
                 <h2 class="logo">AGH Extraterrestrial Intelligence</h2>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about_project.html">About Project</a></li>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/about_project">About Project</a></li>
                 </ul>
             </nav>
 
-            <p class="inputs">Run Main Function</p>
+            <p class="inputs">Start the sky monitoring process</p>
 
             <form>
-                <button id="submit">RUN</button>
+                <button id="submit">Start Simulation</button>
             </form>
+            <p> . </p>
 
-            <p class="inputs">Run Heatmap Function</p>
+            <p class="inputs">Show skymap</p>
 
             <div class="heatmap">
-                <button id="heatmap">RUN</button>
+                <button id="heatmap" value="Reload Page" onClick="window.location.reload(true)">Generate Heatmap</button>
             </div>
 
             <div class="heatmap_pic">
                 <img id="heatmap_pic" src="{{ url_for('static', filename='heatmap_pic.png') }}" />
             </div>
-
-            <script>
-                setTimeout("location.reload(true);", 5000);
-            </script>
-
-<!--            style="display: none;"-->
-
-<!--            <script>-->
-<!--                const showImageButton = document.getElementById("heatmap");-->
-<!--                const myImage = document.getElementById("heatmap_first_pic");-->
-<!--                showImageButton.addEventListener("click", () => {-->
-<!--                myImage.style.display = "none";-->
-<!--                });-->
-<!--             </script>-->
 
             <script>
                 function sendRequest() {

@@ -24,7 +24,7 @@ nav{
 }
  .logo{
     color: white;
-    font-size: 30px;
+    font-size: 35px;
     font-family: monospace;
  }
 
@@ -160,5 +160,13 @@ input:valid~label{
   height:100px;
   top:20%;
   right:65%;
+}
+
+.heatmap_first_pic{
+  position:absolute;
+  width:100px;
+  height:100px;
+  top:25%;
+  right:50%;
 }
 

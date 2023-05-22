@@ -11,6 +11,11 @@ def home():
     return render_template("index.html")
 
 
+@app.route('/about_project')
+def about_project():
+    return render_template("about_project.html")
+
+
 @app.route('/run_main')
 def run_main():
     main()
