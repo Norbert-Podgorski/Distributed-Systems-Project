@@ -1,0 +1,7 @@
+Flask==2.2.3
+Flask-SQLAlchemy==3.0.2
+ray==2.3.0
+SQLAlchemy==1.4.44
+matplotlib==3.4.2
+pandas==1.5.1
+seaborn==0.12.1
