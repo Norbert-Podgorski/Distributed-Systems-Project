@@ -1,13 +1,14 @@
 import ray
-from sqlalchemy import Column, create_engine, ForeignKey, Integer
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
 
 @ray.remote
 class Database:
-    def __init__(self, database_type: str = 'postgresql', user: str = 'postgres', password: str = 'postgres',
-                 database_url: str = 'localhost', port: int = 5432, database_name: str = 'postgres'):
-
+    def __init__(
+        self, database_type: str = 'postgresql', user: str = 'postgres', password: str = 'postgres',
+        database_url: str = 'localhost', port: int = 5432, database_name: str = 'postgres'
+    ):
         db_string = f"{database_type}://{user}:{password}@{database_url}:{port}/{database_name}"
         self.engine = create_engine(db_string)
         self.Base = declarative_base()
@@ -45,29 +46,20 @@ class Database:
         query = f'INSERT INTO stations VALUES ({station_idx}, {x_min}, {x_max}, {y_min}, {y_max})'
         self.engine.execute(query)
 
-    def delete_station(self, station_idx: int):
-        self.engine.execute(f'DROP TABLE station_number_{station_idx}')
-        self.engine.execute(f'DELETE FROM stations WHERE station_idx={station_idx}')
-
     def add_observation(self, station_idx: int, x: int, y: int, power: int):
         observation_idx = 1
         if self.engine.execute(
-                f'''SELECT observation_idx FROM station_number_{station_idx} 
-                    ORDER BY observation_idx DESC''').fetchone() is not None:
+            f'''SELECT observation_idx FROM station_number_{station_idx} 
+                    ORDER BY observation_idx DESC'''
+        ).fetchone() is not None:
             observation_idx = self.engine.execute(
                 f'''SELECT observation_idx FROM station_number_{station_idx} 
-                    ORDER BY observation_idx DESC''').fetchone()[0] + 1
+                    ORDER BY observation_idx DESC'''
+            ).fetchone()[0] + 1
 
         query = f'INSERT INTO station_number_{station_idx} VALUES ({observation_idx}, {station_idx}, {x}, {y}, {power})'
 
         self.engine.execute(query)
-
-    def delete_observation(self, station_idx: int, observation_idx: int):
-        self.engine.execute(f'DELETE FROM station_number_{station_idx} WHERE observation_idx={observation_idx}')
-
-    def delete_last_observation(self):
-        # TODO
-        pass
 
 
 if __name__ == '__main__':

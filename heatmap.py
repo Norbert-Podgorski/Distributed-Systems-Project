@@ -1,9 +1,7 @@
-import matplotlib.colors
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from sqlalchemy import create_engine
-from matplotlib import style
 
 
 def legend_without_duplicate_labels(figure):
@@ -26,14 +24,15 @@ def generate_heatmap():
             df_observations = pd.concat([df_observations, pd.DataFrame(engine.execute(query).fetchall())])
 
     with plt.style.context('dark_background'):
-        sns.scatterplot(data=df_observations, x='x', y='y', hue='station_idx', size='power',
-                        palette=sns.blend_palette(['red', 'white']))
+        sns.scatterplot(
+            data=df_observations, x='x', y='y', hue='station_idx', size='power',
+            palette=sns.blend_palette(['red', 'white'])
+        )
         legend_without_duplicate_labels(plt)
         plt.grid()
         plt.tight_layout()
         plt.savefig('./static/heatmap_pic.png')
         plt.grid()
-        plt.show()
 
 
 if __name__ == '__main__':
